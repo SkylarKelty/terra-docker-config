@@ -1,0 +1,20 @@
+postgresql:
+  image: sameersbn/postgresql:9.1-1
+  environment:
+    - DB_USER=gitlab
+    - DB_PASS=secretpassword
+    - DB_NAME=gitlabhq_production
+  volumes:
+   - /home/skelty/docker/gitlab/data/postgresql:/var/lib/postgresql
+gitlab:
+  image: sameersbn/gitlab:7.7.2
+  links:
+   - redis:redisio
+   - postgresql:postgresql
+  ports:
+   - "10080:80"
+   - "10022:22"
+  volumes:
+   - /home/skelty/docker/gitlab/data/git:/home/git/data
+redis:
+  image: sameersbn/redis:latest
