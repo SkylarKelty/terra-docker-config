@@ -1,0 +1,8 @@
+puppetmaster:
+  image: rfkrocktk/puppetmaster
+  ports:
+   - "8140:8140"
+  volumes:
+   - /home/skelty/docker/puppetmaster/data/ssh:/root/.ssh/authorized_keys.d
+   - /home/skelty/docker/puppetmaster/data/puppet/manifests:/etc/puppet/manifests
+   - /home/skelty/docker/puppetmaster/data/puppet/modules:/etc/puppet/modules
